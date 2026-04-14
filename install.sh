@@ -50,7 +50,7 @@ else
   echo "  1) 끝에 추가 (append)"
   echo "  2) 건너뛰기 (skip)"
   echo "  3) 덮어쓰기 (overwrite)"
-  read -rp "선택 [1/2/3]: " choice
+  read -rp "선택 [1/2/3]: " choice || choice="2"
   case "$choice" in
     1)
       echo "" >> "$TARGET/CLAUDE.md"

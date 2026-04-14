@@ -20,6 +20,7 @@
       "Bash(cargo check *)",
       "Bash(cargo clippy *)",
       "Bash(git checkout -- *)",
+      "Bash(git clean -f *)",
       "Bash(file *)"
     ],
     "deny": [
