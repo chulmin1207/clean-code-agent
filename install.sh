@@ -29,6 +29,9 @@ echo "✓ .claude/commands/review.md"
 cp "$SOURCE/.claude/commands/refactor.md" "$TARGET/.claude/commands/refactor.md"
 echo "✓ .claude/commands/refactor.md"
 
+cp "$SOURCE/.claude/commands/architect.md" "$TARGET/.claude/commands/architect.md"
+echo "✓ .claude/commands/architect.md"
+
 # 2. settings.json — 이미 있으면 건드리지 않음
 if [ ! -f "$TARGET/.claude/settings.json" ]; then
   cp "$SOURCE/.claude/settings.json" "$TARGET/.claude/settings.json"
@@ -83,4 +86,5 @@ echo "   /clean              변경사항 검사"
 echo "   /review src/app.ts  파일 리뷰"
 echo "   /review src/        디렉토리 리뷰"
 echo "   /refactor src/app.ts 리팩토링"
+echo "   /architect src/     아키텍처 분석"
 echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"

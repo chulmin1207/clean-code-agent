@@ -3,6 +3,8 @@ $ARGUMENTS 에 지정된 파일을 클린코드 원칙에 따라 리팩토링하
 ## 전제 조건
 
 - $ARGUMENTS 가 없으면: "리팩토링 대상 파일을 지정해주세요. 예: /refactor src/utils/validator.ts" 출력 후 종료
+- 대상이 디렉토리면: "리팩토링은 파일 단위입니다. 먼저 /review로 분석 후 우선순위 상위 파일을 지정하세요" 출력 후 종료
+- 대상이 바이너리면: "분석 불가: 소스 코드 파일이 아닙니다" 출력 후 종료
 - 대상 파일이 존재하지 않으면: 에러 출력 후 종료
 
 ## 규칙
@@ -18,7 +20,7 @@ $ARGUMENTS 에 지정된 파일을 클린코드 원칙에 따라 리팩토링하
 ### Before 스냅샷
 1. 프로젝트 환경 감지 (tsconfig.json, package.json, pyproject.toml, go.mod, Cargo.toml)
 2. 타입 체크 실행 (있으면): npx tsc --noEmit / mypy / go vet / cargo check
-3. 린트 실행 (있으면): npx eslint / ruff check / cargo clippy
+3. 린트 실행 (있으면): npx eslint / ruff check / golangci-lint / cargo clippy
 4. 테스트 실행 (있으면): npm test / pytest / go test / cargo test
 5. 결과 저장
 
@@ -32,10 +34,13 @@ $ARGUMENTS 에 지정된 파일을 클린코드 원칙에 따라 리팩토링하
 ### After 검증
 1. 동일한 타입 체크, 린트, 테스트 재실행
 2. 비교 판정:
-   - 테스트 통과 수 감소 → 즉시 롤백, 원인 분석 후 재시도
+   - 테스트 통과 수 감소 → `git checkout -- <파일>` 로 즉시 롤백, 원인 분석 후 재시도
    - 타입 에러 신규 발생 → 수정 후 재검증
    - 린트 에러 신규 발생 → 수정 후 재검증
-3. 도구가 없는 환경이라도 리팩토링 전후 모든 분기를 나열하여 동등성을 증명
+3. 도구가 없는 환경이라도:
+   - 리팩토링 전 코드의 모든 분기 나열
+   - 리팩토링 후 코드의 모든 분기 나열
+   - 1:1 대응으로 동등성 증명
 
 ### 검증 리포트 (반드시 출력)
 ```

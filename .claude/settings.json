@@ -5,9 +5,7 @@
       "Bash(git log *)",
       "Bash(git status)",
       "Bash(wc -l *)",
-      "Bash(npm run lint *)",
-      "Bash(npm run test *)",
-      "Bash(npm run build *)",
+      "Bash(npm run *)",
       "Bash(npm test *)",
       "Bash(npx tsc --noEmit *)",
       "Bash(npx eslint *)",
@@ -20,7 +18,9 @@
       "Bash(golangci-lint *)",
       "Bash(cargo test *)",
       "Bash(cargo check *)",
-      "Bash(cargo clippy *)"
+      "Bash(cargo clippy *)",
+      "Bash(git checkout -- *)",
+      "Bash(file *)"
     ],
     "deny": [
       "Bash(git push *)",
